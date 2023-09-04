@@ -3,7 +3,8 @@ export interface Patient {
     name:string,
     dateOfBirth:string,
     ssn:string,
-    gender:string,
+    gender: string,
     occupation:string
 }
 
+export type NO_SSN = Omit<Patient, 'ssn'>

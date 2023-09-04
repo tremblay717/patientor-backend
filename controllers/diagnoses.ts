@@ -1,11 +1,9 @@
 const diagnosesRouter = require('express').Router();
 // const { response } = require('../app')
-import data from '../data/diagnoses';
-import { Diagnosis } from "../interfaces/Diagnosis";
+import diagnosesServices from '../types/diagnosesServices'
 
-diagnosesRouter.get('/', async (_req:any, res:any) => {
-    const diagnoses:Array<Diagnosis> = data;
-    res.json(diagnoses);
+diagnosesRouter.get('/', async (_req: any, res: any) => {
+    res.json(diagnosesServices.getDiagnoses());
 })
 
 module.exports = diagnosesRouter;
