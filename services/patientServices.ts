@@ -1,4 +1,4 @@
-import { Patient, NO_SSN } from "../interfaces/Patient";
+import { Patient, NO_SSN } from "../types/Patient";
 import data from '../data/patients';
 
 const patients: Array<Patient> = data;
