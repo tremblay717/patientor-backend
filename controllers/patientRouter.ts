@@ -1,5 +1,5 @@
 const patientsRouter = require('express').Router();
-import patientServices from '../services/patientServices'
+import patientServices from '../services/patientServices';
 
 patientsRouter.get('/', async (_req: any, res: any) => {
     res.json(patientServices.removeSinFromPatients());

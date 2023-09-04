@@ -1,4 +1,5 @@
 import { Patient, NO_SSN, NEW_PATIENT } from "../types/Patient";
+import { Gender } from "../types/Patient";
 import data from '../data/patients';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -12,13 +13,23 @@ const removeSinFromPatients = (filter?: Patient): NO_SSN[] => {
             id, name, dateOfBirth, gender, occupation
         }))
     }
-
     return patients.map(({ id, name, dateOfBirth, gender, occupation }) => ({
         id, name, dateOfBirth, gender, occupation
     }))
 }
 
+
+const isGender = (param: string): param is Gender => {
+    return Object.values<string>(Gender).includes(param)
+}
+
 const createPatient = (body: NEW_PATIENT) => {
+
+    const genderOk = isGender(body.gender);
+    
+    if(!genderOk) {
+        return {'error':'gender'}
+    }
 
     const obj: Patient = {
         id: uuidv4(),
@@ -30,7 +41,7 @@ const createPatient = (body: NEW_PATIENT) => {
     };
 
     data.push(obj);
-    return removeSinFromPatients(obj)
+    return removeSinFromPatients(obj)[0]
 }
 
 export default {
