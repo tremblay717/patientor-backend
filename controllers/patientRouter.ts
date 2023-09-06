@@ -11,9 +11,9 @@ patientsRouter.get('/', async (_req: any, res: any) => {
 patientsRouter.get('/:id', async (req: any, res: any) => {
     const patient: Patient = patientServices.getPatient(req.params.id)!;
     if (!patient) {
-        res.json({ 'error': 'Patient not found' })
+        res.json({ 'error': 'Patient not found' });
     }
-    res.json(patient)
+    res.json(patient);
 
 })
 
@@ -22,6 +22,5 @@ patientsRouter.post('/', async (req: any, res: any) => {
     const newUser = patientServices.createPatient(req.body);
     res.json(newUser);
 })
-
 
 module.exports = patientsRouter;

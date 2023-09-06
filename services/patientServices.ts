@@ -1,20 +1,18 @@
 import { Patient, NO_SSN, NEW_PATIENT } from "../types/Patient";
 import { Gender } from "../types/Patient";
-import data from '../data/patients';
+import patients from '../data/patients';
 import { v4 as uuidv4 } from 'uuid';
 
-const patients:Patient[] = data;
-
 const removeSinFromPatients = (filter?: Patient): NO_SSN[] => {
-
+   
     if (filter) {
         const temporaryPatients:Patient[] = patients.filter(patient => patient.id === filter.id)
-        return temporaryPatients.map(({ id, name, dateOfBirth, gender, occupation }) => ({
-            id, name, dateOfBirth, gender, occupation
+        return temporaryPatients.map(({ id, name, dateOfBirth, gender, occupation, entries }) => ({
+            id, name, dateOfBirth, gender, occupation, entries
         }))
     }
-    return patients.map(({ id, name, dateOfBirth, gender, occupation }) => ({
-        id, name, dateOfBirth, gender, occupation
+    return patients.map(({ id, name, dateOfBirth, gender, occupation, entries }) => ({
+        id, name, dateOfBirth, gender, occupation, entries
     }))
 }
 
@@ -41,12 +39,12 @@ const createPatient = (body: NEW_PATIENT) => {
         entries:[]
     }!;
 
-    data.push(obj);
+    patients.push(obj);
     return removeSinFromPatients(obj)[0]
 }
 
 const getPatient = (id:string) => {
-    const patient:Patient = data.find(patient => patient.id === id)!;
+    const patient:Patient = patients.find(patient => patient.id === id)!;
     return patient
 }
 

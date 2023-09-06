@@ -4,8 +4,28 @@ export enum Gender {
     Other = 'other'
 }
 
+interface Discharge  {
+    date:string,
+    criteria:string
+}
+
+interface SickLeave {
+    startDate: string,
+    endDate: string,
+}
+
 //eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Entry {
+    id: string,
+    date: string,
+    specialist: string,
+    type: string,
+    description: string,
+    employerName?:string,
+    diagnosisCodes?:string[],
+    healthCheckRating?: number,
+    discharge?:Discharge,
+    sickLeave?: SickLeave
 }
 
 export interface Patient  {
@@ -15,7 +35,7 @@ export interface Patient  {
     ssn: string,
     gender: string,
     occupation: string,
-    entries?:string[]
+    entries:Entry[]
 }
 
 
